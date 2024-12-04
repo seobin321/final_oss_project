@@ -20,7 +20,7 @@ class ImageFilterLibrary:
         filtered_image = self.filters[filter_name]() 
         return filtered_image
         
-        pass
+
 
     def apply_blur(self, intensity=1):
         """블러 필터 강도 적용"""
