@@ -14,19 +14,22 @@ class ImageFilterLibrary:
 
     def apply_blur(self, intensity=1):
         """블러 필터 강도 적용"""
-        pass
+        return self.image.filter(ImageFilter.GaussianBlur(radius=intensity))
 
     def apply_sharpen(self, intensity=1):
         """샤프 필터 강도 적용"""
-        pass
+        enhancer = ImageEnhance.Sharpness(self.image)
+        return enhancer.enhance(intensity)
 
     def apply_brighten(self, intensity=1):
         """밝기 필터 강도 적용"""
-        pass
+        enhancer = ImageEnhance.Brightness(self.image)
+        return enhancer.enhance(intensity)
 
     def apply_darken(self, intensity=1):
         """어두운 필터 강도 적용"""
-        pass
+        enhancer = ImageEnhance.Brightness(self.image)
+        return enhancer.enhance(1 / intensity)  # 강도에 반비례하여 어두워짐
     
     def save_image(self, save_path, image_to_save=None):
         """저장"""
