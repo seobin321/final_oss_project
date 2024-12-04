@@ -15,6 +15,10 @@ class ImageFilterLibrary:
             "darken": self.apply_darken, #어둡게
         }
 
+    def apply_filter(self, filter_name):
+        """사용자 정의 필터"""
+        pass
+
     def apply_blur(self, intensity=1):
         """블러 필터 강도 적용"""
         return self.image.filter(ImageFilter.GaussianBlur(radius=intensity))
