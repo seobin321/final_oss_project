@@ -38,3 +38,23 @@ class ImageFilterLibrary:
         image_to_save.save(save_path)
         print(f"Image saved to {save_path}")
     
+    def apply_blue_tint(self):
+        """파란 계열 필터 적용"""
+        pass
+
+    def apply_red_tint(self):
+        """붉은 계열 필터 적용"""
+        pass
+
+    def apply_yellow_tint(self):
+        """노란 계열 필터 적용"""
+        pass
+
+    def apply_pink_tint(self):
+        """분홍 계열 필터 적용"""
+        pass
+
+    def apply_purple_tint(self):
+        """보라 계열 필터 적용"""
+        pass
+    
