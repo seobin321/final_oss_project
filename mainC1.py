@@ -1,10 +1,13 @@
 from PIL import Image, ImageFilter, ImageEnhance, ImageOps
+from fer import FER
+import cv2
 
 
 class ImageFilterLibrary:
     def __init__(self, image_path):
         self.image_path = image_path
         self.image = Image.open(image_path)
+        self.cv_image = cv2.imread(image_path)
         self.filters = {
             "blur": self.apply_blur, #블러 효과
             "sharpen": self.apply_sharpen, #샤픈 효과
@@ -60,4 +63,36 @@ class ImageFilterLibrary:
 
     def analyze_and_apply_filter(self):
         """FER를 사용하여 감정을 분석하고 필터를 적용"""
-        pass
+        detector = FER(mtcnn=True)
+
+        try:
+            results = detector.detect_emotions(self.cv_image)
+
+            if not results:
+                print("No faces detected. Applying default filter.")
+                return self.apply_darken()  # 기본 필터 적용 후 결과 반환
+            
+            dominant_emotion = results[0]["emotions"]
+            emotion = max(dominant_emotion, key=dominant_emotion.get)
+            print(f"Detected dominant emotion: {emotion}")
+
+            emotion_to_filter = {
+                "happy": "yellow_tint",
+                "sad": "blue_tint",
+                "angry": "red_tint",
+                "neutral": "purple_tint",
+                "surprise": "pink_tint",
+                "fear": "darken",
+            }
+
+            filter_name = emotion_to_filter.get(emotion, "sharpen")
+            print(f"Applying filter: {filter_name}")
+
+            # 필터링된 이미지 생성
+            filtered_image = getattr(self, f"apply_{filter_name}")()
+            print(f"Filter '{filter_name}' applied successfully.")
+            return filtered_image  # 필터링된 이미지를 반환
+
+        except Exception as e:
+            print(f"Error during emotion analysis: {e}")
+            return self.apply_sharpen()  # 기본 필터 적용 후 결과 반환
