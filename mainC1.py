@@ -1,18 +1,30 @@
 from PIL import Image, ImageFilter, ImageEnhance, ImageOps
 from fer import FER
 import cv2
+import os
+import pathlib
+import numpy as np 
 
 
 class ImageFilterLibrary:
     def __init__(self, image_path):
-        self.image_path = image_path
-        self.image = Image.open(image_path)
-        self.cv_image = cv2.imread(image_path)
+        # 유니코드 경로 변환
+        unicode_path = str(pathlib.Path(image_path).resolve(strict=True))
+        self.image_path = unicode_path
+
+        # Pillow로 이미지 불러오기
+        self.image = Image.open(unicode_path)
+
+        # OpenCV로 이미지 불러오기
+        self.cv_image = cv2.imdecode(
+            np.fromfile(unicode_path, dtype=np.uint8), cv2.IMREAD_UNCHANGED
+        )
+
         self.filters = {
-            "blur": self.apply_blur, #블러 효과
-            "sharpen": self.apply_sharpen, #샤픈 효과
-            "brighten": self.apply_brighten, #밝게
-            "darken": self.apply_darken, #어둡게
+            "blur": self.apply_blur,
+            "sharpen": self.apply_sharpen,
+            "brighten": self.apply_brighten,  # 밝은 필터 추가
+            "darken": self.apply_darken,  # 어두운 필터 추가
         }
 
     def apply_filter(self, filter_name):
