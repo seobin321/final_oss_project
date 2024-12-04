@@ -27,14 +27,35 @@ class ImageFilterLibrary:
             "darken": self.apply_darken,  # 어두운 필터 추가
         }
 
-    def apply_filter(self, filter_name):
+    def apply_filter(self, filter_name, intensity):
         """사용자 정의 필터"""
-        
-        if filter_name not in self.filters:
-            print(f"Filter '{filter_name}' is not available.")
+
+        if filter_name not in self.filters and (intensity < 1 or intensity > 50):
+            print("filter name and intensity error. retry")
             return False
-        filtered_image = self.filters[filter_name]() 
-        return filtered_image
+        
+        elif filter_name not in self.filters:
+            print(f"Filter '{filter_name}' is not available. retry")
+            
+            return False
+        
+        elif (intensity < 1 or intensity > 50):
+            print("Error: invalid value. Please use a value between 1 and 50. retry ")
+            return False
+        
+        
+        else:
+            if filter_name == "blur":
+                filtered_image = self.apply_blur(intensity)
+            elif filter_name == "sharpen":
+                filtered_image = self.apply_sharpen(intensity)
+            elif filter_name == "brighten":
+                filtered_image = self.apply_brighten(intensity)
+            elif filter_name == "darken":
+                filtered_image = self.apply_darken(intensity)
+
+            
+            return filtered_image
 
     def apply_blur(self, intensity=1):
         """블러 필터 강도 적용"""
