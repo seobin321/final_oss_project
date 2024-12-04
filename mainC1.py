@@ -17,6 +17,9 @@ class ImageFilterLibrary:
 
     def apply_filter(self, filter_name):
         """사용자 정의 필터"""
+        filtered_image = self.filters[filter_name]() 
+        return filtered_image
+        
         pass
 
     def apply_blur(self, intensity=1):
