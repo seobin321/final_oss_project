@@ -22,7 +22,18 @@ pip install image-filter-library
 
 # Usage
 
-For detailed usage examples, check out [example.py](example.py).
+### Example: 사용자 정의 필터 적용
+```python
+from image_filter_library import ImageFilterLibrary
+
+# Load the image
+image_path = "path/to/your/image.jpg"
+library = ImageFilterLibrary(image_path)
+
+# Apply Blur filter
+filtered_image = library.apply_filter("blur", intensity=2)
+filtered_image.show()
+
 
 # Requirements
 이 라이브러리는 다음 Python 패키지에 의존합니다:
