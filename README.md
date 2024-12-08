@@ -33,6 +33,7 @@ library = ImageFilterLibrary(image_path)
 # Apply Blur filter
 filtered_image = library.apply_filter("blur", intensity=2)
 filtered_image.show()
+```
 
 
 # Requirements
