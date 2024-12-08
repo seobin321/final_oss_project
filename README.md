@@ -22,6 +22,8 @@ pip install image-filter-library
 
 # Usage
 
+For detailed usage examples, check out [example.py](example.py).
+
 # Requirements
 이 라이브러리는 다음 Python 패키지에 의존합니다:
 
