@@ -21,23 +21,6 @@ Unicode Path Support:
 pip install image-filter-library
 
 # Usage
-#Example: 사용자 정의 필터 적용
-
-from image_filter_library import ImageFilterLibrary
-image_path = "path/to/your/image.jpg"
-library = ImageFilterLibrary(image_path)
-#Blur 필터 적용
-filtered_image = library.apply_filter("blur", intensity=2)
-filtered_image.show()
-
-#Example: 감정 기반 필터 적용
-from image_filter_library import ImageFilterLibrary
-image_path = "path/to/your/image.jpg"
-library = ImageFilterLibrary(image_path)
-#감정 분석 후 필터 적용
-filtered_image = library.analyze_and_apply_filter()
-filtered_image.show()
-
 
 # Requirements
 이 라이브러리는 다음 Python 패키지에 의존합니다:
