@@ -39,11 +39,11 @@ filtered_image.show()
 # Requirements
 이 라이브러리는 다음 Python 패키지에 의존합니다:
 
-numpy
-opencv-python-headless
-Pillow
-fer
-moviepy
+* numpy
+* opencv-python-headless
+* Pillow
+* fer
+* moviepy
 
 
 # Contributing
