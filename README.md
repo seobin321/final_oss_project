@@ -20,6 +20,10 @@ FER(표정 인식) 기반 감정 분석 후 자동 필터 적용:
 아래 명령어를 통해 라이브러리를 설치하세요:
 pip install image-filter-library
 
+[pypi site]([https://oss-doc.readthedocs.io/en/latest/#](https://pypi.org/project/image-filter-library/1.0.8/#description)).
+
+
+
 # Usage
 
 ### Example: 사용자 정의 필터 적용
